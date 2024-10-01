@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
 
-    public GameObject player;
+    //public GameObject player;
     public float speed;
     private float distance;
 
@@ -18,9 +18,9 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction = player.transform.position - transform.position;
+        //distance = Vector2.Distance(transform.position, player.transform.position);
+       // Vector2 direction = player.transform.position - transform.position;
 
-        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, -10), speed * Time.deltaTime);
     }
 }
