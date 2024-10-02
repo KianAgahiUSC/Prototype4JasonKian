@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject player;
+    [SerializeField] private AudioClip shootSound;  // 射击声音
+    private AudioSource audioSource;  // 音频源
 
     private float gunHeat = 0;
 
@@ -16,6 +18,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 获取 AudioSource 组件
+        audioSource = GetComponent<AudioSource>();
+        
         playerPower = 2;
         bulletNum = 1;
     }
@@ -29,7 +34,6 @@ public class Player : MonoBehaviour
             Shoot(bulletNum, 60f);
             gunHeat = 0.25f;
         }
-        //Debug.Log(playerPower);
     }
 
     void Shoot(int numberOfBullets, float spreadAngle)
@@ -54,7 +58,17 @@ public class Player : MonoBehaviour
 
             // Set the bullet's velocity based on the calculated direction
             obj.GetComponent<Rigidbody2D>().velocity = bulletDirection.normalized * 15; // Adjust speed as needed
+
+            // 播放射击声音
+            if (shootSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource 或 shootSound 为空，无法播放声音");
+            }
         }
     }
-
 }
+
