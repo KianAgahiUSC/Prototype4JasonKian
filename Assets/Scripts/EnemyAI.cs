@@ -52,11 +52,11 @@ public class EnemyAI : MonoBehaviour
             Debug.Log(gameScript.enemyKilled);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
-            playerScript.playerPower -= 0.05f;
-
+            playerScript.playerPower -= 2 * Time.deltaTime;
+            playerScript.playerPower = Mathf.Max(playerScript.playerPower, 0.05f);
             gameScript.enemyKilled++;
 
-            if (gameScript.enemyKilled >= 5)
+            if (gameScript.enemyKilled >= 10)
             {
                 gameScript.enemyKilled = 0;
                 playerScript.bulletNum += 2;

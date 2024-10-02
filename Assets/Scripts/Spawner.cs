@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
             SpawnEnemy(enemy);
             spawnTime = Time.time + player.playerPower;
         }
-        //Debug.Log(player.playerPower);
+        Debug.Log(player.playerPower);
     }
 
 

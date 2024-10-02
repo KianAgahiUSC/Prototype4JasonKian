@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject player;
 
-    private float gunHeat;
+    private float gunHeat = 0;
 
     public float playerPower;
 
@@ -23,9 +23,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        gunHeat -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && (gunHeat <= 0))
         {
             Shoot(bulletNum, 60f);
+            gunHeat = 0.25f;
         }
         //Debug.Log(playerPower);
     }
