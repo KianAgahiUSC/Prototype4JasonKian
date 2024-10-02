@@ -573,11 +573,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6658162085649836227, guid: 4bacc8a692ce76242a7912ccd9a4926c, type: 3}
-  minX: -11
-  maxX: 11
+  minX: -10
+  maxX: 10.05922
   minY: 6
   maxY: 8
   timeBetweenSpawn: 1
+  player: {fileID: 1423283820}
 --- !u!1 &1423283815
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4644955869701544837, guid: 878a24d950b494447861b32b4f2c9fb9, type: 3}
+  player: {fileID: 0}
+  playerPower: 0
 --- !u!1 &1583809103
 GameObject:
   m_ObjectHideFlags: 0

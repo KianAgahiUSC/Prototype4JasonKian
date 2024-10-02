@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -8,11 +10,28 @@ public class EnemyAI : MonoBehaviour
     //public GameObject player;
     public float speed;
     private float distance;
+    public GameObject prefab;
+
+    public GameObject player;
+
+    public Player playerScript;
+
+    private int enemyKilled;
+
+    public GameObject game;
+    public Game gameScript;
+
+
+    public 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
+        player = GameObject.Find("Player");
+        game = GameObject.Find("GameSystem");
+        playerScript = player.GetComponent<Player>();
+        gameScript = game.GetComponent<Game>();
     }
 
     // Update is called once per frame
@@ -28,8 +47,20 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("COLLISION!");
-        Destroy(this.gameObject);
-        Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log(gameScript.enemyKilled);
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+            playerScript.playerPower -= 0.05f;
+
+            gameScript.enemyKilled++;
+
+            if (gameScript.enemyKilled >= 5)
+            {
+                gameScript.enemyKilled = 0;
+                playerScript.bulletNum += 2;
+            }
+        }
     }
 }

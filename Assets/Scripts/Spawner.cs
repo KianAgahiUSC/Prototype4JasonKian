@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
     public float minX, maxX, minY, maxY, timeBetweenSpawn;
     private float spawnTime;
 
+    public Player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,9 @@ public class Spawner : MonoBehaviour
         if (Time.time > spawnTime)
         {
             SpawnEnemy(enemy);
-            spawnTime = Time.time + timeBetweenSpawn;
+            spawnTime = Time.time + player.playerPower;
         }
+        //Debug.Log(player.playerPower);
     }
 
 
